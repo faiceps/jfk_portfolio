@@ -45,12 +45,24 @@ Below are all the features available in this dataset:
 And similarly for "MID-SIZE", "FULL-SIZE", "TWO-SEATER".
 
 
-### Exploratory Data Analysis
-- Histograms and density plots for CO₂ emissions to understand distribution.
-- Boxplots to compare emissions across vehicle classes.
-- Correlation matrix using corrplot for numeric feature relationships.
-- Scatterplot of City vs Highway fuel consumption to assess linear relationship (Pearson correlation = 0.949).
-- Q-Q plots to assess normality assumptions of emissions data.
+## Exploratory Data Analysis
+
+### Histograms and density plots for CO₂ emissions to understand distribution.
+<img width="733" height="768" alt="image" src="https://github.com/user-attachments/assets/7fe7cafa-3a8e-4dec-93bc-cbac3cc0ebdf" />
+
+### Boxplots to compare emissions across vehicle classes.
+<img width="733" height="768" alt="image" src="https://github.com/user-attachments/assets/fd4d5309-3c86-48c3-a873-dbb405269e58" />
+
+### Correlation matrix using corrplot for numeric feature relationships.
+<img width="733" height="768" alt="image" src="https://github.com/user-attachments/assets/00b4fe80-7108-4905-a4ce-0d8e10e1ee71" />
+
+### Scatterplot of City vs Highway fuel consumption to assess linear relationship (Pearson correlation = 0.929).
+<img width="733" height="768" alt="image" src="https://github.com/user-attachments/assets/1e218225-0149-44de-a8c1-6db61260353e" />
+
+
+### Q-Q plots to assess normality assumptions of emissions data.
+<img width="733" height="768" alt="image" src="https://github.com/user-attachments/assets/30fd5cdc-9c78-4f10-ab68-3f6734e99c7a" />
+
 
 
 ### Statistical Modeling
@@ -67,14 +79,30 @@ ANOVA:
 - Tested if mean CO₂ emissions differ across Vehicle Classes.
 - Also tested relationship between CO₂ emissions and combined fuel consumption (FC-COMB).
 
-📉 Linear Regression
+---
 
-### Diagnostic Checks
+## Linear Regression
+
+**Model 1: CO2.Emissions ~ Vehicle.Class.**
+- Weak predictor of CO₂ emissions (R² = 0.1655).
+
+**Model 2: CO2.Emissions ~ FC-COMB.**
+- Strong predictor of CO₂ emissions (R² = 0.8349).
+
+## Diagnostic Checks for Each Model
 Conducted for both regression models:
 
 - Residuals vs Fitted    : to check linearity.
 - Scale-Location         : homoscedasticity assumption.
 - Q-Q Plot               : normality of residuals.
 - Residuals vs Leverage  : detection of influential observations.
+
+
+### Model 1
+<img width="733" height="768" alt="image" src="https://github.com/user-attachments/assets/9f8edbea-c326-4aa9-80df-8c73dade5a2e" />
+
+
+### Model 2
+<img width="733" height="768" alt="image" src="https://github.com/user-attachments/assets/12624c7f-4395-43ac-9082-f00b264248fd" />
 
 ---
