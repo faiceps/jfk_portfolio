@@ -1,58 +1,80 @@
-# # 🚗 Analyzing CO₂ Emissions Across Vehicle Classes
+## Evaluating the Environmental Impact of Automotive Vehicles
 
-This project uses R to explore the environmental impact of automotive vehicles based on fuel consumption and vehicle type. Through statistical modeling and visualization, we identify key predictors of CO₂ emissions and assess how different vehicle classes contribute to environmental load.
+
+
+This project uses R to investigate the environmental impact of automotive vehicles by evaluating the relationship between fuel consumption, vehicle class, and CO2 emissions under various driving conditions. Statistical techniques and machine learning modeling were used to uncover key trends and patterns. The goal is to provide insights that could inform environmental policy, vehicle design, and consumer awareness.
+
+**Full report available in attached pdf file.**
 
 ---
 
-## Dataset Info
-- **Name**: `co2_emmision_train_data.csv`
-- **Source**: [Kaggle CO2 Emissions Dataset](https://www.kaggle.com/datasets)
-- **Size**: ~27,549 rows × 26 columns
-- **Content**: Vehicle specifications including:
-  - Fuel consumption (City, Highway, Combined)
-  - CO₂ emissions (g/km)
-  - Vehicle Class (e.g. SUV, Pickup Truck, Mid-size)
-  - Engine size, transmission type, and more
+## **Dataset Source**: [Kaggle CO2 Emissions Dataset](https://www.kaggle.com/datasets)
+## Dataset Info:
+A dataset entitled “Carbon Dioxide Emission by Vehicles” was obtained from Kaggle. 
+Below are all the features available in this dataset:
+
+<img width="940" height="1105" alt="image" src="https://github.com/user-attachments/assets/d56faad4-d281-4a22-9319-21f2aae27109" />
 
 ---
 
 ## Objectives
 1. Investigate how **driving conditions** (city vs. highway) affect **fuel efficiency** and **CO₂ emissions**.
 2. Examine whether **vehicle class** significantly influences CO₂ output.
-3. Identify the **strongest predictors** of emissions and evaluate model fit.
+3. Identify the **strongest predictors of emissions** and evaluate model fit.
+
+---
+
+## Key Insights
+- **Fuel consumption (FC-COMB)** is a **significant predictor of CO₂ emissions** (R² = 0.83), suggesting that efficiency-focused policies can directly reduce emissions.
+- **Vehicle Class alone** is not a strong predictor (R² = 0.17) due to overlapping consumption behaviors.
+- **High fuel consumers emit significantly more CO₂** (t-test p-value < 0.001).
+- Vehicles with better **city and highway fuel ratios** tend to align with lower emission profiles.
 
 ---
 
 ## Methods & Techniques
 ### Data Cleaning
-- Removed invalid `CO₂ = 0` values.
-- Replaced missing city/combined fuel values using highway fuel data.
-- Consolidated similar vehicle class labels (e.g., all SUV variants into "SUV").
+- Removed records with CO2.Emissions = 0 (Cars will never have 0 CO2 emissions).
+- Imputed missing Fuel.Consumption.City (FC-CT) and Fuel.Consumption.Combined (FC-COMB) values using Fuel.Consumption.Highway (FC-HW).
+- Consolidated similar vehicle class labels:
+
+"SUV - Small" and "SUV - Medium" → "SUV"
+
+"Pickup truck - Small" and "Pickup truck - Large" → "PICKUP TRUCK"
+
+And similarly for "MID-SIZE", "FULL-SIZE", "TWO-SEATER".
+
 
 ### Exploratory Data Analysis
-- Histograms, density plots, Q-Q plots
-- Correlation matrix using `corrplot`
-- Boxplots comparing emissions by vehicle type
+- Histograms and density plots for CO₂ emissions to understand distribution.
+- Boxplots to compare emissions across vehicle classes.
+- Correlation matrix using corrplot for numeric feature relationships.
+- Scatterplot of City vs Highway fuel consumption to assess linear relationship (Pearson correlation = 0.949).
+- Q-Q plots to assess normality assumptions of emissions data.
+
 
 ### Statistical Modeling
-- **One-Sample T-Test**: Validated emissions > 0 baseline
-- **Two-Sample T-Test**: Compared emissions between high and low fuel consumption groups
-- **ANOVA**: Tested variance in CO₂ across vehicle classes
-- **Linear Regression Models**:
-  - Model 1: CO₂ ~ Vehicle Class → *R² = 0.17*
-  - Model 2: CO₂ ~ Combined Fuel Consumption → *R² = 0.83*
 
-### Diagnostic Analysis
-- Residuals vs. Fitted plots
-- Scale-Location plots
-- Q-Q plots
-- Leverage plots
+One-Sample T-Test:
+- Tested if CO₂ emissions are significantly greater than 0.
+- Used both alternative = "less" and alternative = "greater".
 
+Two-Sample T-Test:
+- Created HighFuelConsumption vs LowFuelConsumption groups (based on median of FC-COMB).
+- Tested if CO₂ emissions differ significantly between the two groups.
 
+ANOVA:
+- Tested if mean CO₂ emissions differ across Vehicle Classes.
+- Also tested relationship between CO₂ emissions and combined fuel consumption (FC-COMB).
 
-## Key Insights
-- Vehicles with **higher combined fuel consumption emit significantly more CO₂**.
-- **Fuel consumption is a stronger predictor** of emissions than vehicle class.
-- Among all types, **Pickup Trucks** and **Two-Seaters** contribute the highest emissions per unit of fuel.
-- Linear regression using `Combined Fuel Consumption` explains **83.5%** of variance in CO₂ emissions (R² = 0.83), compared to only 16.5% using `Vehicle Class`.
+📉 Linear Regression
 
+### Diagnostic Checks
+Conducted for both regression models:
+
+- Residuals vs Fitted    : to check linearity.
+- Scale-Location         : homoscedasticity assumption.
+- Q-Q Plot               : normality of residuals.
+- Residuals vs Leverage  : detection of influential observations.
+
+---
