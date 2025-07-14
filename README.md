@@ -4,7 +4,7 @@ Welcome to my data science portfolio ! Here is my showcase of selected projects 
 
 ## Projects
 
-1. [Student Performance Prediction](https://github.com/faiceps/jfk_portfolio/tree/student-performance)  
+1. [Student Performance Prediction](https://github.com/faiceps/jfk_portfolio/tree/student_performance)  
    A hybrid machine learning model using CNN + K-Means to identify at-risk students and enable early intervention strategies.
 
 2. [CO₂ Emissions Analysis by Vehicle Class](https://github.com/faiceps/jfk_portfolio/tree/co2)  
