@@ -1,58 +1,85 @@
-# # 🚗 Analyzing CO₂ Emissions Across Vehicle Classes
+## Classifying Student Performance Using CNN and K-Means Clustering
 
-This project uses R to explore the environmental impact of automotive vehicles based on fuel consumption and vehicle type. Through statistical modeling and visualization, we identify key predictors of CO₂ emissions and assess how different vehicle classes contribute to environmental load.
+
+
+This project uses Python to classify students into performance classes of High, Average, and Underperformers based on their academic scores, study habits, and personal characteristics. A standard CNN classifier was compared against a K-Means + CNN hybrid model to evaluate performance metrics such as Accuracy, Precision, Recall, F1-score, and AUC across performance classes.
+
+**Full report available in attached pdf file.**
 
 ---
 
-## Dataset Info
-- **Name**: `co2_emmision_train_data.csv`
-- **Source**: [Kaggle CO2 Emissions Dataset](https://www.kaggle.com/datasets)
-- **Size**: ~27,549 rows × 26 columns
-- **Content**: Vehicle specifications including:
-  - Fuel consumption (City, Highway, Combined)
-  - CO₂ emissions (g/km)
-  - Vehicle Class (e.g. SUV, Pickup Truck, Mid-size)
-  - Engine size, transmission type, and more
+## **Dataset Source**: [Kaggle Student Scores Dataset](https://www.kaggle.com/datasets/markmedhat/student-scores)
+## Dataset Info:
+Below are all the features available in this dataset:
+
+<img width="940" height="852" alt="image" src="https://github.com/user-attachments/assets/b2255db6-4ba2-443b-ae47-ff2bfc493a79" />
+
 
 ---
 
 ## Objectives
-1. Investigate how **driving conditions** (city vs. highway) affect **fuel efficiency** and **CO₂ emissions**.
-2. Examine whether **vehicle class** significantly influences CO₂ output.
-3. Identify the **strongest predictors** of emissions and evaluate model fit.
+The main objective is to assess whether K-Means clustering as a pre-processing step can improve the performance of a CNN classification model.
+
+---
+
+## Key Findings
+
+- CNN-only model accuracy: 86%
+
+- **K-Means + CNN model accuracy: 96%**
+
+- CNN underperformed in identifying borderline students. Adding cluster labels helped group students with similar behavioral patterns, which improved generalization.
+  
+- **All evaluation metrics improved with clustering**, including precision, recall, and F1-score for underperformers.
+
+- **AUC Scores** for CNN+KMeans exceeded 0.99 for all classes.
+
+- **Silhouette Score**: 0.1301 , indicates mild overlap in clusters yet sufficient for boosting CNN performance.
+
+- Incorporating K-means clustering before model training **can significantly enhance performance** in education-related predictive tasks.
 
 ---
 
 ## Methods & Techniques
-### Data Cleaning
-- Removed invalid `CO₂ = 0` values.
-- Replaced missing city/combined fuel values using highway fuel data.
-- Consolidated similar vehicle class labels (e.g., all SUV variants into "SUV").
+### Data Preprocessing
+- Dropped irrelevant columns: name, email, career_aspiration.
+
+- Calculated 'average_score' by averaging the scores of English, History, and STEM subjects (Math, Physics, Chemistry, Biology, Geography).
+
+- Created performance_category labels using thresholds:
+
+High Performer (average ≥ 90)
+
+Average Performer (70 ≤ average < 90)
+
+Underperformer (average < 70)  
+
+- Used encoding to convert categorical variables (gender, part_time_job, extracurricular_activities) into numeric format.
+
+---
 
 ### Exploratory Data Analysis
-- Histograms, density plots, Q-Q plots
-- Correlation matrix using `corrplot`
-- Boxplots comparing emissions by vehicle type
 
-### Statistical Modeling
-- **One-Sample T-Test**: Validated emissions > 0 baseline
-- **Two-Sample T-Test**: Compared emissions between high and low fuel consumption groups
-- **ANOVA**: Tested variance in CO₂ across vehicle classes
-- **Linear Regression Models**:
-  - Model 1: CO₂ ~ Vehicle Class → *R² = 0.17*
-  - Model 2: CO₂ ~ Combined Fuel Consumption → *R² = 0.83*
+- Histogram of average scores
+<img width="855" height="627" alt="image" src="https://github.com/user-attachments/assets/29a9aa9b-8050-4a27-8771-ac126e82d048" />
 
-### Diagnostic Analysis
-- Residuals vs. Fitted plots
-- Scale-Location plots
-- Q-Q plots
-- Leverage plots
+- Boxplot comparing performance categories
+<img width="865" height="493" alt="image" src="https://github.com/user-attachments/assets/45936ee7-15da-47c3-8858-7d1493bf78ec" />
 
+- Class Distribution Barplot (High vs Average vs Under)
+<img width="1580" height="980" alt="output (3)" src="https://github.com/user-attachments/assets/6a540193-486a-4d42-b1fb-7f2fad30ca7b" />
 
+---
 
-## Key Insights
-- Vehicles with **higher combined fuel consumption emit significantly more CO₂**.
-- **Fuel consumption is a stronger predictor** of emissions than vehicle class.
-- Among all types, **Pickup Trucks** and **Two-Seaters** contribute the highest emissions per unit of fuel.
-- Linear regression using `Combined Fuel Consumption` explains **83.5%** of variance in CO₂ emissions (R² = 0.83), compared to only 16.5% using `Vehicle Class`.
+## Machine Learning Models
+### Model 1: CNN Only
 
+### Model 2: K-Means + CNN
+
+## Evaluation Metrics
+- Accuracy, Precision, Recall, F1-Score.
+- AUC/ROC for each class.
+- Silhouette Score for K-Means clustering
+<img width="767" height="356" alt="image" src="https://github.com/user-attachments/assets/1093c37e-fb9a-4e50-af00-cae4b5f96b3a" />
+
+---
