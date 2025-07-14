@@ -10,9 +10,9 @@ Welcome to my data science portfolio ! Here is my showcase of selected projects 
 2. [CO₂ Emissions Analysis by Vehicle Class](https://github.com/faiceps/jfk_portfolio/tree/co2)  
    Performed regression, ANOVA and EDA in R to explore how vehicle types and fuel usage impact emissions.
 
-3. [Simulated Spotify Dataset Analysis](https://github.com/faiceps/jfk_portfolio/tree/predictive-maintenance)   
+3. [Simulated Spotify Dataset Analysis](https://github.com/faiceps/jfk_portfolio/tree/music_streaming)   
    Performed comparative analysis on song popularity and genre trends using MySQL and PySpark, highlighting performance and syntax differences between conventional and Big Data processing tools.
    
-4. [Predictive Maintenance of Industrial Machines](https://github.com/faiceps/jfk_portfolio/tree/music_streaming)  
+4. [Predictive Maintenance of Industrial Machines](https://github.com/faiceps/jfk_portfolio/tree/predictive-maintenance)  
    Built a failure prediction model on sensor data to classify five machine failure types.
 
