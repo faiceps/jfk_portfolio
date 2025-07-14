@@ -72,10 +72,6 @@ Below are all the features available in this dataset:
 
 ## Visualizations 
 
-
-### MySQL:
-### PySpark:
-
 ### Top Genres by Total Streams
 
 ### MySQL:
